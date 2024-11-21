@@ -3,6 +3,8 @@
 This replication package contains all necessary resources to reproduce our study, structured for clarity and ease of use. Below is a detailed explanation of the directory structure and the purpose of each component:
 
 #### **Directory Structure**
+```plaintext
+.
 ├── prompt
 │   ├── TestCaseGeneration.py
 │   ├── signature_data.py
@@ -15,6 +17,7 @@ This replication package contains all necessary resources to reproduce our study
 └── workflow_figure
     ├── doc-retrieval.pdf
     └── spapi-workflow.pdf
+```
 
 #### **File Descriptions**
 
