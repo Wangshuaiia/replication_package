@@ -1,0 +1,39 @@
+import pytest
+import time
+
+@pytest.mark.product("spapi_tester")
+def test_get_{{api_name}}(
+    spapi_setup,
+    api_client,
+    vv,
+    assert_alive,
+    canoe_controller,
+    logger,
+):
+    # Set VV attributes
+    {% for vv_attr, value in vv_attrs.items() -%}
+        {{vv_attr}} = {{value|keeptype}}
+    {% endfor %}
+    
+    time.sleep(10)
+    response = api_client.get(
+        url="/api{{path}}",
+        headers={{headers}},
+        proxies=None,
+    )
+
+    # print response body to pytest log
+    print(f"Response body: \n {response.body}")
+
+    response_body = response.body[0] if type(response.body) == list else response.body
+
+    # Check for correct status code
+    assert response.status_code == 200
+
+    # check API version match
+    assert response.headers._headers["Content-Type"] == {{headers["Content-Type"]|keeptype}}
+
+    # Validate response with assertions
+    {% for api_property, value in api_object.items() -%}
+        assert response_body[{{api_property|keeptype}}] == {{value|keeptype}}
+    {% endfor %}
