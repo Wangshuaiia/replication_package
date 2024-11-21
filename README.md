@@ -10,7 +10,6 @@ This replication package contains all necessary resources to reproduce our study
 │   ├── signature_data.py
 │   └── spapi_signatures.py
 ├── README.md
-├── spapi_test_process.jpg
 ├── template
 │   ├── get.py.jinja
 │   └── post_put.py.jinja
