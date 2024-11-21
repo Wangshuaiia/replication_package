@@ -3,7 +3,18 @@
 This replication package contains all necessary resources to reproduce our study, structured for clarity and ease of use. Below is a detailed explanation of the directory structure and the purpose of each component:
 
 #### **Directory Structure**
-*(Add the directory structure here once available.)*
+├── prompt
+│   ├── TestCaseGeneration.py
+│   ├── signature_data.py
+│   └── spapi_signatures.py
+├── README.md
+├── spapi_test_process.jpg
+├── template
+│   ├── get.py.jinja
+│   └── post_put.py.jinja
+└── workflow_figure
+    ├── doc-retrieval.pdf
+    └── spapi-workflow.pdf
 
 #### **File Descriptions**
 
