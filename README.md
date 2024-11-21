@@ -23,7 +23,7 @@ This replication package contains all necessary resources to reproduce our study
 
 1. **Prompt Folder**
    - The `prompt` folder stores all the prompts used for each invocation of the Large Language Model (LLM). These prompts have been optimized using the DSPy framework. Specifically:
-     - The file `signature_data.py` contains the DSPy signatures used in our implementation. These signatures are designed to standardize the input and output formats for each step.
+     - The file `spapi_signatures.py` contains the DSPy signatures used in our implementation. These signatures are designed to standardize the input and output formats for each step.
      - Templates to ensure consistent formatting of inputs and outputs are also defined in `signature_data.py`.
    - For test case generation, we adopted a Chain-of-Thought reasoning approach. The specific constraints and methods for generating test cases are detailed in the `TestCaseGeneration.py` file.
 
