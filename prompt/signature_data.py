@@ -76,27 +76,7 @@ SWAGGER_TO_CAN_ENUM_EXAMPLES = [
             {"api_value": "false", "vv_value": 1},
             {"api_value": "true", "vv_value": 0},
         ],
-    },
-    {
-        "api_data": {
-            "preConditionsToAdjustDimming": {
-                "type": "string",
-                "enum": ["WRONG_VEHICLE_MODE", "POSITION_LIGHTS_NOT_ON"],
-                "description": " Specify the condition which needs to be fulfilled to adjust X",
-                "readOnly": "true",
-            }
-        },
-        "can_data": {
-            "PS_DimmingLevelStat_Adjustable": 0,
-            "PS_DimmingLevelStat_NotAdjustableWrongVehicleMode": 1,
-            "PS_DimmingLevelStat_NotAdjustablePositionLightsOff": 2,
-            "PS_DimmingLevelStat_NotAvailable": 3,
-        },
-        "api_can_mapping": [
-            {"api_value": "WRONG_VEHICLE_MODE", "vv_value": 1},
-            {"api_value": "POSITION_LIGHTS_NOT_ON", "vv_value": 2},
-        ],
-    },
+    }
 ]
 
 UNIT_EXAMPLE = [
@@ -107,35 +87,5 @@ UNIT_EXAMPLE = [
 UNITS = [
     "Minutes",
     "Seconds",
-    "Hours",
-    "Milliliters per 100 kilometers",
-    "Millimeters",
-    "Revolutions",
-    "Degrees Celsius",
-    "Radians",
-    "Pascals per second",
-    "Meters",
-    "Kilometers",
-    "Watts",
-    "Liters",
-    "Liters per hour",
-    "Radians per second",
-    "Meters per second squared",
-    "Miles per gallon",
-    "Amperes",
-    "Watts per hour",
-    "Watt-hours per 100 kilometers",
-    "Degrees",
-    "Kilowatt-hours",
-    "Kilometers per liter",
-    "Kilopascals",
-    "Kilograms",
-    "Years",
-    "Percent",
-    "Months",
-    "Days",
-    "Grams per 100 kilometers",
-    "Hz",
-    "RPM",
-    "Kilometers per hour",
+    "Hours"
 ]

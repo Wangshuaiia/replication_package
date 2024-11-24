@@ -2,24 +2,21 @@ import pytest
 import json
 import time
 
-@pytest.mark.product("spapi_tester")
-def test_{{method}}_{{api_name}}(
-    spapi_setup, 
-    api_client, 
-    vv, 
-    assert_alive, 
-    canoe_controller, 
-    logger):
+@pytest.mark.product("{{product_name}}")
+def test_{{http_method}}_{{api_endpoint}}(
+    setup_fixture, 
+    api_client_instance
+    ):
 
-    response = api_client.{{method}}(
-        url="/api{{path}}",
-        {% if headers -%}
-        headers={{headers|keeptype}},
+    response = api_client_instance.{{http_method}}(
+        url="/api{{endpoint_path}}",
+        {% if request_headers -%}
+        headers={{request_headers|keeptype}},
         {% endif -%}
         proxies=None, 
         timeout=5,
-        {% if payload -%}
-        data=json.dumps({{payload}})
+        {% if request_payload -%}
+        data=json.dumps({{request_payload}})
         {% endif -%}
     )
     
@@ -30,29 +27,28 @@ def test_{{method}}_{{api_name}}(
     else:
         response_body = None
 
-    # Update VV signal values
-    {% for module in modules -%}
-    {{module}}.current_values_in_canoe()
+    # Update virtual vehicle (VV) signal values
+    {% for signal_module in signal_modules -%}
+    {{signal_module}}.current_values_in_canoe()
     {% endfor %}
  
     time.sleep(10)
 
     # Check for correct status code
-    assert response.status_code == {{status_code}}
+    assert response.status_code == {{expected_status_code}}
 
-    {% if headers and "Content-Type" in headers -%}
-    # Check API version match
-    assert response.headers._headers["Content-Type"] == {{headers["Content-Type"]|keeptype}}
+    {% if request_headers and "Content-Type" in request_headers -%}
+    # Check API Content-Type header
+    assert response.headers._headers["Content-Type"] == {{request_headers["Content-Type"]|keeptype}}
     {% endif %}
 
-    # Assert response
+    # Assert response properties
     if response_body:
-        {% for api_prop, value in api_object.items() -%}
-        assert response_body[{{api_prop|keeptype}}] == {{value|keeptype}}
+        {% for response_property, expected_value in response_properties.items() -%}
+        assert response_body[{{response_property|keeptype}}] == {{expected_value|keeptype}}
         {% endfor %}
-        pass
-    
-    # Assert VV attributes to verify correct behavior
-    {% for vv_attribute, value in vv_attrs.items() -%}
-    assert {{vv_attribute}} == {{value|keeptype}}
+
+    # Assert virtual vehicle (VV) attributes to verify correct behavior
+    {% for vv_property, expected_value in virtual_vehicle_attributes.items() -%}
+    assert {{vv_property}} == {{expected_value|keeptype}}
     {% endfor %}
