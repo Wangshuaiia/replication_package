@@ -1,9 +1,11 @@
-### Replication Package Overview
+### Replication Package Description
 
-This replication package contains all necessary resources to reproduce our study, structured for clarity and ease of use. Below is a detailed explanation of the directory structure and the purpose of each component:
+This replication package provides the necessary resources to reproduce the main components of our project, which was developed within the context of a truck manufacturing company. Due to confidentiality constraints, we are unable to share details regarding the APIs, API specifications, CAN signals, and Virtual Vehicle information used in our project. However, this package includes the implementation of core methodologies, the prompts and templates utilized, and workflow diagrams illustrating the processes.
 
-#### **Directory Structure**
-```plaintext
+All prompts have been carefully sanitized to ensure the removal of sensitive information. The package also includes runnable example scripts that demonstrate how these prompts and templates can be applied, enabling users to effectively reproduce the described methods.
+
+### Package Directory Structure
+```
 .
 ├── README.md
 ├── prompt
@@ -20,22 +22,31 @@ This replication package contains all necessary resources to reproduce our study
     └── spapi-workflow.pdf
 ```
 
-#### **File Descriptions**
+### Directory Contents
 
-1. **Prompt Folder**
-   - The `prompt` folder stores all the prompts used for each invocation of the Large Language Model (LLM). These prompts have been optimized using the DSPy framework. Specifically:
-     - The file `spapi_signatures.py` contains the DSPy signatures used in our implementation. These signatures are designed to standardize the input and output formats for each step.
-     - Templates to ensure consistent formatting of inputs and outputs are also defined in `signature_data.py`.
-   - For test case generation, we adopted a Chain-of-Thought reasoning approach. The specific constraints and methods for generating test cases are detailed in the `TestCaseGeneration.py` file.
+#### 1. `prompt` Directory
+The `prompt` directory contains the prompts used for invoking large language models (LLMs) and runnable example scripts demonstrating their application. 
 
-2. **Template Folder**
-   - The `template` folder includes Jinja templates for generating test code from test cases. 
-     - `get.py.jinja`: A template specifically tailored for GET API calls.
-     - `post_put.py.jinja`: A template designed for POST or PUT API calls.
+- **Prompt Optimization:** Using the DSPy framework, we optimized the prompts and encapsulated the DSPy signatures in `spapi_signatures.py`. These signatures define consistent input-output formats for each step of the process.
+- **Templates Integration:** To ensure reproducibility, templates defining the fixed formats for input and output are included within `signature_data.py`.
+- **Usage Example:**
+  - `info_match_demo.py` demonstrates the integration of DSPy signatures and templates.
+  - `TestCaseGeneration_demo.py` showcases the Chain-of-Thought approach for generating test cases, with detailed constraints and generation logic.
 
-3. **Workflow Figure Folder**
-   - The `workflow_figure` folder contains reference diagrams illustrating the workflow:
-     - `spapi-workflow.pdf`: Provides an overview of the entire workflow process.
-     - `doc-retrieval.pdf`: Details the specific procedures involved in the document retrieval phase.
+#### 2. `template` Directory
+The `template` directory contains Jinja templates for generating test code from test cases:
 
-This package has been carefully organized to facilitate replication and comprehension of our study. Each folder and file plays a distinct role in demonstrating the integration of DSPy-based prompt optimization, test case generation, and workflow visualization.
+- **Templates:**
+  - `get.py.jinja`: Template for APIs using GET methods.
+  - `post_put.py.jinja`: Template for APIs using POST or PUT methods.
+- **Usage Example:** `gen_code_demo.py` demonstrates how to use these Jinja templates to generate test code effectively.
+
+#### 3. `workflow_figure` Directory
+The `workflow_figure` directory provides visual references for the project workflows:
+
+- `spapi-workflow.pdf`: An overview of the complete workflow.
+- `doc-retrieval.pdf`: A detailed diagram of the document retrieval process.
+
+### Reproducibility and Support
+This replication package has been meticulously organized to facilitate easy and accurate reproduction of our methods. If you encounter any issues or have further questions, please feel free to contact us.
+
