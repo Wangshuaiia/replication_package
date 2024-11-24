@@ -5,12 +5,14 @@ This replication package contains all necessary resources to reproduce our study
 #### **Directory Structure**
 ```plaintext
 .
+├── README.md
 ├── prompt
-│   ├── TestCaseGeneration.py
+│   ├── TestCaseGeneration_demo.py
+│   ├── info_match_demo.py
 │   ├── signature_data.py
 │   └── spapi_signatures.py
-├── README.md
 ├── template
+│   ├── gen_code_demo.py
 │   ├── get.py.jinja
 │   └── post_put.py.jinja
 └── workflow_figure
