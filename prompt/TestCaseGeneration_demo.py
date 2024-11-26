@@ -22,6 +22,7 @@ The strategy is as follows:
    - For properties sharing CAN signals, ensure that their values are logically coherent.
    - Apply logical rules from property descriptions to avoid invalid combinations.
    - Maintain consistency in properties influenced by the same CAN value.
+   - Given that the value of an attribute is a range, select a value from the boundaries of the range as an edge case.
 """
 
 reasoning = dspy.OutputField(
