@@ -1,49 +1,18 @@
 # To be used in APIPropertyRetriever signature
-YAML_CAN_INPUT_EXAMPLE = {
+API_CAN_INPUT_EXAMPLE = {
     "ABCObject::valueOne": "CANSignal1",
-    "ABCObject::valueTwo::Sussy": "CANSignal2::Sus",
-    "ABCObject::valueTwo::DefinitelyNotSussy": "CANSignal2::NotSus",
-    "ABCObject::valueThree": "BA_CanSignal_XX Inverted signal.",
     "ABCObject::valueFour::TRUE": "AASignal:BB OR PV_AnotherSignal:CC",
-    "ABCObject::valueFour::False": "AASignal:AA",
-}
+    "ABCObject::valueFour::False": "AASignal:AA",}
 
-YAML_CAN_OUTPUT_EXAMPLE = [
+API_CAN_OUTPUT_EXAMPLE = [
     {"api_property": "valueOne", "can_signals": [{"can_name": "CanSignal1"}]},
-    {
-        "api_property": "valueTwo",
-        "can_signals": [
-            {
-                "can_name": "CanSignal2",
-                "can_mappings": [
-                    {"api_value": "Sussy", "can_value": ["Sus"]},
-                    {"api_value": "DefinitelyNotSussy", "can_value": ["NotSus"]},
-                ],
-            }
-        ],
-    },
-    {
-        "api_property": "valueThree",
-        "can_signals": [
-            {"can_name": "BA_CanSignal_XX", "optional_description": "Inverted signal."}
-        ],
-    },
-    {
-        "api_property": "valueFour",
-        "can_signals": [
-            {
+	{"api_property": "valueFour","can_signals": [{
                 "can_name": "AASignal",
                 "can_mappings": [
                     {"api_value": "true", "can_value": ["BB"]},
-                    {"api_value": "false", "can_value": ["AA"]},
-                ],
-            },
-            {
-                "can_name": "PV_AnotherSignal",
-                "can_mappings": [{"api_value": "true", "can_value": ["CC"]}],
-            },
-        ],
-    },
+                    {"api_value": "false", "can_value": ["AA"]},],},
+            {"can_name": "PV_AnotherSignal",
+                "can_mappings": [{"api_value": "true", "can_value": ["CC"]}],},],}
 ]
 
 CAN_DATA_EXAMPLE = {"Abc_Mode": 1, "Ccd_Spare": 4}

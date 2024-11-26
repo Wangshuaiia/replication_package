@@ -1,9 +1,9 @@
 import dspy
 import os
-
+from spapi_signatures import APIObjectGeneratorSignature
 # Initialize the OpenAI language model
 os.environ['OPENAI_API_KEY'] = 'your_openai_api_key'
-lm = dspy.OpenAI(model='gpt-4o-mini')
+lm = dspy.OpenAI(model='gpt-4o')
 dspy.settings.configure(lm=lm)
 
 reasoning_prefix = """Reasoning: Let's think step by step to determine the values for the API properties.
@@ -28,27 +28,6 @@ reasoning = dspy.OutputField(
     prefix=reasoning_prefix,
     desc="Use the reasoning steps to generate a valid API object. Begin by evaluating the first API property...",
 )
-
-
-class APIObjectGeneratorSignature(dspy.Signature):
-    """
-    Generate a valid API object by filling in the null values for the API properties based on the given API specification and CAN signal mappings.
-    """
-
-    api_object_to_fill: dict = dspy.InputField(
-        desc="The API object with null values that need to be filled based on the specification and mappings."
-    )
-    api_specification: dict = dspy.InputField(
-        desc="The API specification, including details of each property and their dependencies."
-    )
-    api_prop_to_can_signal_mappings: dict = dspy.InputField(
-        desc="Mapping details between API properties and CAN signals, providing the relationship for value generation."
-    )
-
-    previously_generated_api_objects: list = dspy.InputField(
-        desc="List of previously generated API objects, used to ensure the generated object is distinct from previous versions."
-    )
-    api_object: dict = dspy.OutputField(desc="The resulting API object with all null values filled appropriately.")
 
 
 class APIObjectGenerator(dspy.Module):

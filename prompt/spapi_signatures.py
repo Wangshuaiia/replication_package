@@ -1,16 +1,16 @@
 import dspy
 
-class APIToCANSignalMapper(dspy.Signature):
-    """
-    Given an API table and an API property-to-CAN signal map, generate a list of mappings between API properties and CAN signals.
+class APIPropertyToCANSignal(dspy.Signature):
+    """    
+    Given an API table and an API property -> CAN signal map, generate a list of API properties -> CAN signal(s). 
     """
 
+    api_to_can_dict: dict = dspy.InputField(
+        desc="Dictionary containing mappings between API properties and their corresponding CAN signals. The CAN signal format can be snake_case or CamelCase. Descriptive details after '::' represent possible mapping details."
+    )
     api_table_example: dict = dspy.InputField(desc="Example input table containing API properties.")
     api_to_can_mapping_example: list[dict] = dspy.InputField(
         desc="Example of API property-to-CAN signal mappings. The CAN signal name typically includes optional descriptive information after '::'. Only the part before '::' is the signal name."
-    )
-    api_to_can_dict: dict = dspy.InputField(
-        desc="Dictionary containing mappings between API properties and their corresponding CAN signals. The CAN signal format can be snake_case or CamelCase. Descriptive details after '::' represent possible mapping details."
     )
     mapped_api_to_can: list = dspy.OutputField(
         desc="List of mappings between API properties and their respective CAN signals."
@@ -88,3 +88,24 @@ class APIUnitRetriever(dspy.Signature):
     api_property_units: list[dict] = dspy.OutputField(
         desc="List of dictionaries, where each contains the API property name and its derived unit. If a property lacks a unit, it should not be included."
     )
+
+
+class APIObjectGeneratorSignature(dspy.Signature):
+    """
+    Generate a valid API object by filling in the null values for the API properties based on the given API specification and CAN signal mappings.
+    """
+
+    api_object_to_fill: dict = dspy.InputField(
+        desc="The API object with null values that need to be filled based on the specification and mappings."
+    )
+    api_specification: dict = dspy.InputField(
+        desc="The API specification, including details of each property and their dependencies."
+    )
+    api_prop_to_can_signal_mappings: dict = dspy.InputField(
+        desc="Mapping details between API properties and CAN signals, providing the relationship for value generation."
+    )
+
+    previously_generated_api_objects: list = dspy.InputField(
+        desc="List of previously generated API objects, used to ensure the generated object is distinct from previous versions."
+    )
+    api_object: dict = dspy.OutputField(desc="The resulting API object with all null values filled appropriately.")
