@@ -1,3 +1,4 @@
+# Automating a Complete Software Test Process Using LLMs: An Automotive Case Study
 ### Replication Package Description
 
 This replication package provides the necessary resources to reproduce the main components of our project, which was developed within the context of a truck manufacturing company. Due to confidentiality constraints, we are unable to share details regarding the APIs, API specifications, CAN signals, and Virtual Vehicle information used in our project. However, this package includes the implementation of core methodologies, the prompts and templates utilized, and workflow diagrams illustrating the processes.
